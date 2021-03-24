@@ -73,6 +73,7 @@
         android:height="55dp"
         android:fontFamily="@font/roboto"
         android:text="Submit"
+        android:backgroundTint="@drawable/custom_button"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
