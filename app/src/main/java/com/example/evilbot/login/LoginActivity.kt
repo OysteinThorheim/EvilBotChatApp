@@ -11,5 +11,6 @@ class LoginActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.login_container, LoginFragment()).commitNow()
+
     }
 }
