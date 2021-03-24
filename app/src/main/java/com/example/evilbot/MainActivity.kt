@@ -1,5 +1,7 @@
 package com.example.evilbot
 
-class MainActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity: AppCompatActivity() {
     //:TODO missing main activity xml
 }

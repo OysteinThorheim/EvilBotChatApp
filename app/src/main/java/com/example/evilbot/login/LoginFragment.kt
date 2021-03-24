@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.FragmentTransaction
 import com.example.evilbot.R
 
 class LoginFragment : Fragment() {
@@ -18,8 +19,8 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var submitButton: Button
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.login_fragment, container, false)
 
         submitButton = view.findViewById(R.id.submit_button)
@@ -36,10 +37,29 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        submitButton.setOnClickListener {
-            
 
-        }
 
+            submitButton.setOnClickListener{
+
+                (activity as LoginActivity).goToTwist()
+
+            }
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        //TODO: lotti stop
+
+        
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        //:TODO resume lucky
+    }
+
+
+
 }
