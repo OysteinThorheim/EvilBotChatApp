@@ -8,12 +8,13 @@
     tools:context=".splash.SplashActivity"
     >
     ​
+
     <TextView
         android:id="@+id/circle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="204dp"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="750dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/circle1"
         android:textAlignment="center"
@@ -23,12 +24,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.642" />
     ​
+
     <TextView
         android:id="@+id/circle3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="352dp"
-        android:layout_marginEnd="268dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="300dp"
         android:background="@drawable/circle3"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,8 +41,8 @@
         android:id="@+id/circle2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="170dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginEnd="190dp"
         android:background="@drawable/circle2"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +53,8 @@
         android:id="@+id/circle4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
-        android:layout_marginBottom="480dp"
+        android:layout_marginStart="290dp"
+        android:layout_marginBottom="500dp"
         android:background="@drawable/circle3"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,12 +78,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginBottom="550dp"
+        android:layout_marginBottom="650dp"
         android:background="@drawable/circle4"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
     ​
+
+    ​
+
     <TextView
         android:id="@+id/Welcome_TW"
         android:layout_width="wrap_content"
@@ -92,11 +97,11 @@
         android:textSize="54dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.322" />
-    ​
+        app:layout_constraintVertical_bias="0.419" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
