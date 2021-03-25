@@ -15,7 +15,6 @@ class APIActivity : AppCompatActivity() {
 
         button_TW.setOnClickListener {
             val apiService = APIService()
-            apiService.getInsult(this, object : InsultInterface {
                 override fun onInsultReceived(insult: Insult) {
                     API_TW.text = insult.insult
                     currentInsultCounter++
