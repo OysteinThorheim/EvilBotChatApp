@@ -12,7 +12,7 @@ class ChatActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ChatFragment.newInstance())
+                .replace(R.id.chat_container, ChatFragment.newInstance())
                 .commitNow()
         }
     }

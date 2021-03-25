@@ -36,7 +36,6 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         favoritesAdapter = FavoritesAdapter(favorite_insults)
-        // TODO: Skal denne ligge i denne funksjonen?
 
         favorites_recyclerview.adapter
 

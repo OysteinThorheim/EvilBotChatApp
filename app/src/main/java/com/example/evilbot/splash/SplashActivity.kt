@@ -12,7 +12,8 @@ import com.example.evilbot.login.LoginActivity
 class SplashActivity : AppCompatActivity() {
 
     //private val splashViewModel: SplashViewModel by viewModels()
-    val SPLASH_TIME_OUT = 3000L //Duration on splashActivity (3 sec)
+    private val userIsLoggedIn = false //TODO: lage kode for om bruker logget på eller ikke (sharedprefs)
+    private val SPLASH_TIME_OUT = 3000L //Duration on splashActivity (3 sec)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,15 +22,13 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
 
-            val userIsLoggedIn = false //TODO: lage kode for om bruker logget på eller ikke (sharedprefs)
-            val activityIntent = if(userIsLoggedIn){
+            val activityIntent = if (userIsLoggedIn) {
                 Intent(this, ChatActivity::class.java)
-            }else{
+            } else {
                 Intent(this, LoginActivity::class.java)
             }
             activityIntent.flags = activityIntent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(activityIntent)
-
             finish()
         }, SPLASH_TIME_OUT)
     }

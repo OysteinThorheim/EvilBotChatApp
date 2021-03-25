@@ -33,19 +33,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/greeting_Text" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ask_me_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/ic_devil"
         android:background="@drawable/custom_button"
-        android:text="Ask me a question"
         android:fontFamily="@font/roboto"
+        android:paddingHorizontal="15dp"
+        android:text="Ask me a question"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ic_devil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

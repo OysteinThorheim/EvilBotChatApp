@@ -13,9 +13,11 @@ import com.example.evilbot.chat.ChatActivity
 
 class TwistFragment : Fragment() {
 
-    /*companion object {
+    //TODO: hva er denne til ? høre med øivind
+    companion object {
         fun newInstance() = TwistFragment()
-    }*/
+    }
+
     private lateinit var viewModel: TwistViewModel
     private lateinit var askMeButton: Button
 

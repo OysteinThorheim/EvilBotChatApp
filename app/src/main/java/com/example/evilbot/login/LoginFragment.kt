@@ -1,6 +1,5 @@
 package com.example.evilbot.login
 
-import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,23 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.FragmentTransaction
+import com.airbnb.lottie.LottieAnimationView
 import com.example.evilbot.R
 
 class LoginFragment : Fragment() {
 
-    /*companion object {
+    //TODO: hva er denne til ? høre med øivind
+    companion object {
         fun newInstance() = LoginFragment()
-    }*/
+    }
+
     private lateinit var viewModel: LoginViewModel
     private lateinit var submitButton: Button
+    private lateinit var loginPageAnimation: LottieAnimationView
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view =  inflater.inflate(R.layout.login_fragment, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.login_fragment, container, false)
 
         submitButton = view.findViewById(R.id.submit_button)
-
+        loginPageAnimation = view.findViewById(R.id.login_figure)
         return view
     }
 
@@ -39,27 +42,28 @@ class LoginFragment : Fragment() {
 
 
 
-            submitButton.setOnClickListener{
-
-                (activity as LoginActivity).goToTwist()
-
-            }
+        submitButton.setOnClickListener {
+            (activity as LoginActivity).goToTwistFragment()
+        }
     }
 
     override fun onPause() {
         super.onPause()
 
-        //TODO: lotti stop
-
-
+        //lotti animation stop
+        cancelAnimation()
     }
 
     override fun onResume() {
         super.onResume()
-        
-        //:TODO resume lucky
+
+        //:TODO resume lotti animation (??)
+        loginPageAnimation.isAnimating
     }
 
 
+    private fun cancelAnimation() {
+        loginPageAnimation.cancelAnimation()
+    }
 
 }

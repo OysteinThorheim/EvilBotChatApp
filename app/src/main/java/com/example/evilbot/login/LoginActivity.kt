@@ -13,12 +13,12 @@ class LoginActivity : AppCompatActivity() {
             .replace(R.id.login_container, LoginFragment()).commitNow()
 
 
-
     }
 
 
-    fun goToTwist(){
-
+    fun goToTwistFragment() {
+        //TODO: notat til Joey
+        //TODO: høre med øivind: når en går til en annen side, er det altid en container man går fra? "R.id.login_container,TwistFragment()"
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.login_container, TwistFragment())

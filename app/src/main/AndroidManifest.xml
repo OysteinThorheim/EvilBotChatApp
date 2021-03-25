@@ -15,7 +15,9 @@
         <activity android:name=".favorites.FavoritesActivity" />
         <activity android:name=".chat.ChatActivity" />
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".splash.SplashActivity">
+        <activity
+            android:name=".splash.SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
