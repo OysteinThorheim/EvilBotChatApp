@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.evilbot.R
+import kotlinx.android.synthetic.main.favorites_fragment.*
 
 class FavoritesFragment : Fragment() {
 
@@ -37,7 +38,7 @@ class FavoritesFragment : Fragment() {
         favoritesAdapter = FavoritesAdapter(favorite_insults)
         // TODO: Skal denne ligge i denne funksjonen?
 
-        fovorites_recyclerview.adapter
+        favorites_recyclerview.adapter
 
     }
 }

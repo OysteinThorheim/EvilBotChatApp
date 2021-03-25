@@ -13,6 +13,7 @@ class APIActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a_p_i)
 
+
         button_TW.setOnClickListener {
             val apiService = APIService()
             apiService.getInsult(this, object: InsultInterface {
