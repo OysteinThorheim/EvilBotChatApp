@@ -10,6 +10,9 @@ import com.example.evilbot.R
 
 class FavoritesFragment : Fragment() {
 
+    var favoritesAdapter: FavoritesAdapter? = null
+    val favorite_insults = mutableListOf<String>("Jeg bryr meg ikke hva andre synes om deg, jeg synes du er kul", "Det ser ut som du trenger litt søvn")
+
     companion object {
         fun newInstance() = FavoritesFragment()
     }
@@ -25,6 +28,16 @@ class FavoritesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
         // TODO: Use the ViewModel
+
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        favoritesAdapter = FavoritesAdapter(favorite_insults)
+        // TODO: Skal denne ligge i denne funksjonen?
+
+        fovorites_recyclerview.adapter
+
+    }
 }
