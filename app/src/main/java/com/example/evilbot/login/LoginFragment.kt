@@ -51,12 +51,12 @@ class LoginFragment : Fragment() {
 
         //TODO: lotti stop
 
-        
+
     }
 
     override fun onResume() {
         super.onResume()
-
+        
         //:TODO resume lucky
     }
 
