@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.evilbot">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EvilBot">
-        <activity android:name=".favorites.FavoritesActivity"></activity>
+        <activity android:name=".API.APIActivity"></activity>
+        <activity android:name=".favorites.FavoritesActivity" />
         <activity android:name=".chat.ChatActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".splash.SplashActivity">
