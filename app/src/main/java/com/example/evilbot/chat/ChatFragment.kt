@@ -21,10 +21,6 @@ import kotlinx.android.synthetic.main.favorites_fragment.*
 
 class ChatFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ChatFragment()
-    }
-
     private lateinit var viewModel: ChatViewModel
     private lateinit var burgerWindow: ConstraintLayout
     private lateinit var favoritesButton: AppCompatButton
@@ -70,27 +66,14 @@ class ChatFragment : Fragment() {
         }
 
         favoritesButton.setOnClickListener {
-
-
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.chat_container, FavoritesFragment())
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
-
-            //val intent = Intent(activity, FavoritesActivity::class.java)
-            //intent.flags = intent.flags
-            //startActivity(intent)
-
+            (activity as ChatActivity).goToFavorites()
         }
 
 
         //TODO: SharedPrefs implementation
         signOutButton.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
-            startActivity(intent)
+            (activity as ChatActivity).logUserOut()
         }
-
     }
 
 
