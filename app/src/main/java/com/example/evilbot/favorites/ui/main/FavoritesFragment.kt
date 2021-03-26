@@ -38,6 +38,5 @@ class FavoritesFragment : Fragment() {
         favoritesAdapter = FavoritesAdapter(favorite_insults)
 
         favorites_recyclerview.adapter
-
     }
 }
