@@ -12,11 +12,6 @@ import com.example.evilbot.R
 
 class LoginFragment : Fragment() {
 
-    //TODO: hva er denne til ? høre med øivind
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
     private lateinit var viewModel: LoginViewModel
     private lateinit var submitButton: Button
     private lateinit var loginPageAnimation: LottieAnimationView
@@ -51,14 +46,14 @@ class LoginFragment : Fragment() {
         super.onPause()
 
         //lotti animation stop
-        cancelAnimation()
+        loginPageAnimation.cancelAnimation()
     }
 
     override fun onResume() {
         super.onResume()
 
         //:TODO resume lotti animation (??)
-        loginPageAnimation.isAnimating
+        //loginPageAnimation.isAnimating
     }
 
 

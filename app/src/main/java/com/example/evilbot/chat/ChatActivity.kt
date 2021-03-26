@@ -22,7 +22,6 @@ class ChatActivity : AppCompatActivity() {
 
     fun goToFavorites() {
 
-        //TODO:joey
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         supportFragmentManager.beginTransaction()
