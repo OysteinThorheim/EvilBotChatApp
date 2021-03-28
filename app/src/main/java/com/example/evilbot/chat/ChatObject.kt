@@ -1,8 +1,7 @@
 package com.example.evilbot.chat
 
-class ChatObject(
-
-    val userName: String,
-    val message: String,
+data class ChatObject(
+    val number: Int,
+    val insult: String,
 
 )

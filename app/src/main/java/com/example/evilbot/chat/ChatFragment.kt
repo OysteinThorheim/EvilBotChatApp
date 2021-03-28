@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.R
 import com.example.evilbot.favorites.FavoritesActivity
 import com.example.evilbot.favorites.ui.main.FavoritesFragment
@@ -27,6 +29,8 @@ class ChatFragment : Fragment() {
     private lateinit var signOutButton: AppCompatButton
     private lateinit var icBurger: ImageButton
     private lateinit var sendMessageButton: ImageButton //TODO: sende melding funksjon
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var chatAdapter: ChatAdapter
 
 
     override fun onCreateView(
@@ -41,7 +45,7 @@ class ChatFragment : Fragment() {
         burgerWindow = view.findViewById(R.id.burger_window)
         burgerWindow.isVisible = false
         signOutButton = view.findViewById(R.id.signOut_button)
-
+        recyclerView = view.findViewById(R.id.chat_recyclerView)
 
         return view
     }
@@ -56,7 +60,22 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setButtonListeners()
+        initRecyclerView()
 
+    }
+    //LayoutManager defines how the recyclerView should look like.
+    private fun initRecyclerView() {
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        chatAdapter = ChatAdapter(
+            listOf(
+                "Test1",
+                "Test2",
+                "Test3",
+                "Test4",
+                "Test5"
+            )
+        )
+        recyclerView.adapter = chatAdapter
     }
 
     private fun setButtonListeners() {
@@ -68,7 +87,6 @@ class ChatFragment : Fragment() {
         favoritesButton.setOnClickListener {
             (activity as ChatActivity).goToFavorites()
         }
-
 
         //TODO: SharedPrefs implementation
         signOutButton.setOnClickListener {
