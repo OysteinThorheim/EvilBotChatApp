@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,11 +69,15 @@ class ChatFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         chatAdapter = ChatAdapter(
             listOf(
-                "Test1",
-                "Test2",
-                "Test3",
-                "Test4",
-                "Test5"
+                ChatObject(1,"dldasdsao"),
+                ChatObject(2,"skaomcsdjocknm"),
+                ChatObject(3,"ijuvhfin"),
+                ChatObject(4,"njfeivbhiufijosmcs"),
+                ChatObject(5,"jidksnckslmpkxaslømxslmxalksmxlkam"),
+                ChatObject(6,"123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"),
+                ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemlekwmceklwmdklwem"),
+                ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwem"),
+                ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwemdewiodjeowjdoiwejdjewondjewnd"),
             )
         )
         recyclerView.adapter = chatAdapter
@@ -81,7 +86,7 @@ class ChatFragment : Fragment() {
     private fun setButtonListeners() {
 
         icBurger.setOnClickListener {
-            burgerWindow.isVisible = !burgerWindow.isVisible
+            burgerWindow.isGone = !burgerWindow.isGone
         }
 
         favoritesButton.setOnClickListener {
