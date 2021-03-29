@@ -43,4 +43,7 @@ class FavoritesAdapter(private val dataSet: MutableList<String>) :
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
+
+    //TODO: private inner class Favorites_Viewholder(val view: TextView): RecyclerView.ViewHolder(view)
+
 }
