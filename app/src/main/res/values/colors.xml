@@ -11,6 +11,8 @@
     <color name="evil_app_primColor">#0B007A</color>
     <color name="gray">#BEBEBE</color>
     <color name="red">#FF0B0B</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="user_chat_tv">#774df2</color>
 
 
 </resources>

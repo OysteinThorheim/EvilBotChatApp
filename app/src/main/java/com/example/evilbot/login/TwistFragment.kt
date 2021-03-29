@@ -8,15 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.example.evilbot.R
 import com.example.evilbot.chat.ChatActivity
 
 class TwistFragment : Fragment() {
 
-    //TODO: hva er denne til ? høre med øivind
-    companion object {
-        fun newInstance() = TwistFragment()
-    }
 
     private lateinit var viewModel: TwistViewModel
     private lateinit var askMeButton: Button
@@ -38,15 +35,16 @@ class TwistFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        askMeButton.setOnClickListener {
 
-            val intent = Intent(activity, ChatActivity::class.java)
-            intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
-            startActivity(intent)
-
-        }
-
-
+    setButtonListeners()
 
     }
+
+    fun setButtonListeners(){
+        askMeButton.setOnClickListener {
+            (activity as LoginActivity).goToChatFragment()
+        }
+
+    }
+
 }
