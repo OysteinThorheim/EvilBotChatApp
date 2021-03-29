@@ -42,8 +42,9 @@ class FavoritesFragment : Fragment() {
         favorites_recyclerview.adapter = favoritesAdapter
         favorites_recyclerview.layoutManager= LinearLayoutManager(context) //(this) ??
 
-
-
         //TODO: save_insultButton
     }
+
+    
+
 }
