@@ -3,15 +3,21 @@ package com.example.evilbot.chat
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
 import com.example.evilbot.R
 import com.example.evilbot.favorites.ui.main.FavoritesFragment
 import com.example.evilbot.login.LoginActivity
+import kotlinx.android.synthetic.main.activity_a_p_i.*
 
 class ChatActivity : AppCompatActivity() {
+
+    var currentInsultCounter: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_activity)
+
+
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

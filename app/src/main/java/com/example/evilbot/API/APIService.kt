@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 
-class APIService {
+/*class APIService {
 
     val insultList = listOf<String>(
         "https://evilinsult.com/generate_insult.php?lang=en&type=json"
@@ -35,4 +35,4 @@ class APIService {
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
     }
-}
+}*/

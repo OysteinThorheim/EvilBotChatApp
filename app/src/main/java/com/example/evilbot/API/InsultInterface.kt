@@ -1,5 +1,6 @@
 package com.example.evilbot.API
 
-interface InsultInterface {
+/*interface InsultInterface {
     fun onInsultReceived(insult: Insult)
-}
+}*/
+

@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.example.evilbot.R
 import kotlinx.android.synthetic.main.activity_a_p_i.*
 
-class APIActivity : AppCompatActivity() {
+/*class APIActivity : AppCompatActivity() {
 
     var currentInsultCounter: Int = 0
 
@@ -23,4 +23,4 @@ class APIActivity : AppCompatActivity() {
             }, currentInsultCounter)
         }
     }
-}
+}*/
