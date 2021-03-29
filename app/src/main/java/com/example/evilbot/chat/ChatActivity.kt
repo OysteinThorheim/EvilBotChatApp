@@ -25,7 +25,7 @@ class ChatActivity : AppCompatActivity() {
                 }
             }, currentInsultCounter)
         }*/
-0
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.chat_container, ChatFragment())
