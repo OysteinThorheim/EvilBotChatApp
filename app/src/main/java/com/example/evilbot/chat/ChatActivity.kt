@@ -11,14 +11,21 @@ import kotlinx.android.synthetic.main.activity_a_p_i.*
 
 class ChatActivity : AppCompatActivity() {
 
-    var currentInsultCounter: Int = 0
+    //var currentInsultCounter: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_activity)
 
-
-
+        /*button_TW.setOnClickListener {
+            val apiService = ChatViewModel()
+            apiService.getInsult(this, object: InsultInterface {
+                override fun onInsultReceived(insult: ChatObject) {
+                    API_TW.text = insult.insult
+                }
+            }, currentInsultCounter)
+        }*/
+0
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.chat_container, ChatFragment())
