@@ -44,7 +44,6 @@ class FavoritesFragment : Fragment() {
 
         //TODO: save_insultButton
     }
-
     
 
 }
