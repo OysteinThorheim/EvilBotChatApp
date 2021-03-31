@@ -2,6 +2,7 @@ package com.example.evilbot.login
 
 import android.content.Context
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,13 +46,19 @@ class LoginFragment : Fragment() {
 
         val name = editText_name.text
 
+        fun toast(toast:String){
+           val toaster = Toast.makeText(context, toast, Toast.LENGTH_SHORT)
+            toaster.setGravity(Gravity.CENTER or Gravity.CENTER, 120, -220)
+            toaster.show()
+        }
+
         submitButton.setOnClickListener {
             if (name.toString() == name.isEmpty().toString() || name.isBlank()) {
-                Toast.makeText(context, "You must enter a name!", Toast.LENGTH_SHORT).show()
+                toast("You must enter a name!")
             } else if (name.isDigitsOnly()) {
-            Toast.makeText(context, "Name cannot only be a digit!", Toast.LENGTH_SHORT).show()
+                toast("Name cannot only be a digit!")
             } else if (name.length <= 2) {
-                Toast.makeText(context, "Name must be longer than that!", Toast.LENGTH_SHORT).show()
+                toast("Name must be longer than that!")
             } else {
                 (activity as LoginActivity).goToTwistFragment()
             }
