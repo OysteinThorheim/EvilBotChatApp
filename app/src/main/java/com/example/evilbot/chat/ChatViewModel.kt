@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 
-class ChatViewModel : ViewModel() {
+class  ChatViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
     val insultList = listOf<String>(
