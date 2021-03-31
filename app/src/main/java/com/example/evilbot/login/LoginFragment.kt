@@ -45,7 +45,6 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -55,12 +54,10 @@ class LoginFragment : Fragment() {
            val toaster = Toast.makeText(context, Html.fromHtml("<font color='#ffffff' ><b>" + toast + "</b></font>"), Toast.LENGTH_SHORT)
             toaster.setGravity(Gravity.CENTER or Gravity.CENTER, 120, -220)
 
-
             val toastView: View? = toaster.getView()
             if (toastView != null) {
                 toastView.setBackgroundResource(R.drawable.toast_color)
-            };
-
+            }
             toaster.show()
         }
 
