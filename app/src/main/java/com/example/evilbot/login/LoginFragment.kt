@@ -2,6 +2,7 @@ package com.example.evilbot.login
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Html
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +32,12 @@ class LoginFragment : Fragment() {
         return view
     }
 
-    fun Context.toast(context: Context = applicationContext, message: String, duration: Int = Toast.LENGTH_SHORT){
-        Toast.makeText(context, message , duration).show()
+    fun Context.toast(
+        context: Context = applicationContext,
+        message: String,
+        duration: Int = Toast.LENGTH_SHORT
+    ){
+        Toast.makeText(context, message, duration).show()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,9 +51,16 @@ class LoginFragment : Fragment() {
 
         val name = editText_name.text
 
-        fun toast(toast:String){
-           val toaster = Toast.makeText(context, toast, Toast.LENGTH_SHORT)
+        fun toast(toast: String){
+           val toaster = Toast.makeText(context, Html.fromHtml("<font color='#ffffff' ><b>" + toast + "</b></font>"), Toast.LENGTH_SHORT)
             toaster.setGravity(Gravity.CENTER or Gravity.CENTER, 120, -220)
+
+
+            val toastView: View? = toaster.getView()
+            if (toastView != null) {
+                toastView.setBackgroundResource(R.drawable.toast_color)
+            };
+
             toaster.show()
         }
 
