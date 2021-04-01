@@ -1,26 +1,21 @@
 package com.example.evilbot.chat
 
-import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.evilbot.Constants.SEND_ID
 import com.example.evilbot.R
-import com.example.evilbot.favorites.FavoritesActivity
-import com.example.evilbot.favorites.ui.main.FavoritesFragment
-import com.example.evilbot.login.LoginActivity
-import com.example.evilbot.login.TwistFragment
-import kotlinx.android.synthetic.main.favorites_fragment.*
 
 class ChatFragment : Fragment() {
 
@@ -29,9 +24,10 @@ class ChatFragment : Fragment() {
     private lateinit var favoritesButton: AppCompatButton
     private lateinit var signOutButton: AppCompatButton
     private lateinit var icBurger: ImageButton
+    private lateinit var ChatInputField: EditText
     private lateinit var sendMessageButton: ImageButton //TODO: sende melding funksjon
     private lateinit var recyclerView: RecyclerView
-    private lateinit var chatAdapter: ChatAdapter
+    private lateinit var adapter: ChatAdapter
 
 
     override fun onCreateView(
@@ -47,6 +43,9 @@ class ChatFragment : Fragment() {
         burgerWindow.isVisible = false
         signOutButton = view.findViewById(R.id.signOut_button)
         recyclerView = view.findViewById(R.id.chat_recyclerView)
+        ChatInputField = view.findViewById(R.id.chat_input_editText)
+        sendMessageButton = view.findViewById(R.id.send_message_button)
+
 
         return view
     }
@@ -61,26 +60,33 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setButtonListeners()
-        initRecyclerView()
+        recyclerView()
 
     }
+
     //LayoutManager defines how the recyclerView should look like.
-    private fun initRecyclerView() {
+    private fun recyclerView() {
+        adapter = ChatAdapter()
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        chatAdapter = ChatAdapter(
-            listOf(
-                ChatObject(1,"dldasdsao"),
-                ChatObject(2,"skaomcsdjocknm"),
-                ChatObject(3,"ijuvhfin"),
-                ChatObject(4,"njfeivbhiufijosmcs"),
-                ChatObject(5,"jidksnckslmpkxaslømxslmxalksmxlkam"),
-                ChatObject(6,"123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"),
-                ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemlekwmceklwmdklwem"),
-                ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwem"),
-                ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwemdewiodjeowjdoiwejdjewondjewnd"),
-            )
-        )
-        recyclerView.adapter = chatAdapter
+
+
+        /*  chatAdapter = ChatAdapter(
+              listOf(
+                  ChatObject(1,"dldasdsao"),
+                  ChatObject(2,"skaomcsdjocknm"),
+                  ChatObject(3,"ijuvhfin"),
+                  ChatObject(4,"njfeivbhiufijosmcs"),
+                  ChatObject(5,"jidksnckslmpkxaslømxslmxalksmxlkam"),
+                  ChatObject(6,"123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"),
+                  ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemlekwmceklwmdklwem"),
+                  ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwem"),
+                  ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwemdewiodjeowjdoiwejdjewondjewnd"),
+              )
+          )
+          recyclerView.adapter = chatAdapter
+
+         */
     }
 
     private fun setButtonListeners() {
@@ -96,6 +102,20 @@ class ChatFragment : Fragment() {
         //TODO: SharedPrefs implementation
         signOutButton.setOnClickListener {
             (activity as ChatActivity).logUserOut()
+        }
+
+        sendMessageButton.setOnClickListener {
+            val message = ChatInputField.text.toString()
+
+            if (message.isNotEmpty()) {
+                ChatInputField.setText("")
+
+                adapter.insertMessage(ChatObject(message, SEND_ID))
+                recyclerView.scrollToPosition(adapter.itemCount - 1)
+
+               // botResponse() //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding
+            }
+
         }
     }
 
