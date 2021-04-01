@@ -20,6 +20,7 @@ class FavoritesAdapter(private val dataSet: MutableList<String>) :
         init {
             // Define click listener for the ViewHolder's View.
             textView = view.findViewById(R.id.favorites_textView)
+
         }
     }
 
