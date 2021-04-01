@@ -32,14 +32,6 @@ class LoginFragment : Fragment() {
         return view
     }
 
-    fun Context.toast(
-        context: Context = applicationContext,
-        message: String,
-        duration: Int = Toast.LENGTH_SHORT
-    ){
-        Toast.makeText(context, message, duration).show()
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
