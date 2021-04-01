@@ -113,11 +113,13 @@ class ChatFragment : Fragment() {
                 adapter.insertMessage(ChatObject(message, SEND_ID))
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
 
-               // botResponse() //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding
+                //botResponse(message) //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
             }
 
         }
     }
+
+
 
 
 }

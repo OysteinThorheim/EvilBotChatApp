@@ -1,5 +1,5 @@
 package com.example.evilbot.chat
-
+/*
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.ImageButton
@@ -38,3 +38,4 @@ class CustomChatBubbleView(context: Context) : ConstraintLayout(context) {
     }
 
 }
+*/

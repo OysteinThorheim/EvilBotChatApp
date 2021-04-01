@@ -98,9 +98,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_user"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="#774df2"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="Øivind"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/user_tv"

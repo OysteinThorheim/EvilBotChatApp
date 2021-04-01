@@ -31,14 +31,13 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
 
         val currentMessage = messagesList[position]
-
         when (currentMessage.id) {
             SEND_ID -> {
                 holder.itemView.user_tv.apply {
                     text = currentMessage.message
                     visibility = View.VISIBLE
                 }
-                holder.itemView.evil_bot_tv.visibility = View.GONE
+                holder.itemView.card_evilbot.visibility = View.GONE
             }
 
             RECEIVE_ID -> {
@@ -46,7 +45,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
                     text = currentMessage.message
                     visibility = View.VISIBLE
                 }
-                holder.itemView.user_tv.visibility = View.GONE
+                holder.itemView.card_user.visibility = View.GONE
             }
         }
     }
@@ -55,18 +54,11 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
         return messagesList.size
     }
 
-    fun insertMessage(message: ChatObject){
+    fun insertMessage(message: ChatObject) {
         this.messagesList.add(message)
         notifyItemInserted(messagesList.size)
     }
 }
-
-
-
-
-
-
-
 
 
 /*
