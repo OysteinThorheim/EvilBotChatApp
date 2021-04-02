@@ -7,14 +7,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.R
 
-class FavoritesAdapter(private val dataSet: MutableList<String>) :
+class FavoritesAdapter(private val dataSet: List<String>) :
     RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
+
+    var favorite_list = mutableListOf<String>()
+
+    init{
+        this.favorite_list=dataSet as MutableList<String>
+    }
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
 
         init {
@@ -22,6 +28,11 @@ class FavoritesAdapter(private val dataSet: MutableList<String>) :
             textView = view.findViewById(R.id.favorites_textView)
 
         }
+    }
+
+    fun del(position: Int){
+        favorite_list.removeAt(position)
+        notifyDataSetChanged()
     }
 
     // Create new views (invoked by the layout manager)
