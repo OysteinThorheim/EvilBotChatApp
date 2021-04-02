@@ -1,5 +1,6 @@
 package com.example.evilbot.chat
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.Constants.SEND_ID
 import com.example.evilbot.R
+import kotlinx.android.synthetic.main.evilbot_chat_card.*
 
 class ChatFragment : Fragment() {
 
@@ -113,13 +115,23 @@ class ChatFragment : Fragment() {
                 adapter.insertMessage(ChatObject(1, "dw",message, SEND_ID))
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
 
-                //botResponse(message) //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
+                botResponds() //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
             }
 
         }
     }
 
 
-
+    fun botResponds(){
+        val currentInsultCounter = 0
+        val apiService = ChatViewModel()
+        context?.let {
+            apiService.getInsult(it, object:InsultInterface {
+                override fun onInsultReceived(insult: ChatObject) {
+                    evil_bot_tv.text = insult.insult
+                }
+            } ,currentInsultCounter)
+        }
+    }
 
 }
