@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
@@ -36,8 +37,6 @@ class ChatFragment : Fragment() {
     private lateinit var adapter: ChatAdapter
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,16 +53,16 @@ class ChatFragment : Fragment() {
         ChatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
 
-
+        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    /* override fun onActivityCreated(savedInstanceState: Bundle?) {
+         super.onActivityCreated(savedInstanceState)
+         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+         // TODO: Use the ViewModel
+     }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,11 +70,25 @@ class ChatFragment : Fragment() {
         setButtonListeners()
         recyclerView()
 
+        viewModel.getInsults(requireContext(),
+            { insults ->
+
+            },
+            {
+                Toast.makeText(
+                    context,
+                    "Could not get insult quote, please try again later.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        )
     }
 
     //LayoutManager defines how the recyclerView should look like.
     private fun recyclerView() {
-        adapter = ChatAdapter()
+        adapter = ChatAdapter(
+            mutableListOf()
+        )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -119,34 +132,34 @@ class ChatFragment : Fragment() {
             if (message.isNotEmpty()) {
                 ChatInputField.setText("")
 
-                adapter.insertMessage(ChatObject(1, "dw",message, SEND_ID))
+                adapter.insertMessage(ChatObject("1", "dw", message, SEND_ID))
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
 
-                }
-               botResponds(message) //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
             }
-
+            botRespond(message) //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
         }
 
-    private fun botResponds(message: String) {
+    }
+
+    private fun botRespond(message: String) {
 
         GlobalScope.launch {
             //fake response delay
             delay(1000)
 
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
 
-        val response = BotResponse.preSetResponses(message)
+                val response = BotResponse.preSetResponses(message)
 
-        adapter.insertMessage(ChatObject(1,"insult",response, RECEIVE_ID))
-        recyclerView.scrollToPosition(adapter.itemCount - 1)
+                adapter.insertMessage(ChatObject("1", "insult", response, RECEIVE_ID))
+                recyclerView.scrollToPosition(adapter.itemCount - 1)
 
-         }
+            }
         }
     }
 
 
-    /* fun botResponds() {
+    /* fun botRespond() {
          val currentInsultCounter = 0
          val apiService = ChatViewModel()
          val message = ChatInputField.text.toString()

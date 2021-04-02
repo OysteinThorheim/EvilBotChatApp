@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.evilbot.MainActivity
 import com.example.evilbot.R
 import com.example.evilbot.chat.ChatActivity
 import com.example.evilbot.login.LoginActivity

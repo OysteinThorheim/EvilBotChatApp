@@ -9,14 +9,12 @@ import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
 import kotlinx.android.synthetic.main.evilbot_chat_card.view.*
 
-class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
-
-    var messagesList = mutableListOf<ChatObject>()
+class ChatAdapter(var dataSet: MutableList<ChatObject>) : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
-                messagesList.removeAt(adapterPosition)
+                dataSet.removeAt(adapterPosition)
                 notifyItemRemoved(adapterPosition)
 
             }
@@ -31,7 +29,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
 
-        val currentMessage = messagesList[position]
+        val currentMessage = dataSet[position]
         when (currentMessage.id) {
             SEND_ID -> {
                 holder.itemView.user_tv.apply {
@@ -52,13 +50,15 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return messagesList.size
+        return dataSet.size
     }
 
     fun insertMessage(message: ChatObject) {
-        this.messagesList.add(message)
-        notifyItemInserted(messagesList.size)
+        this.dataSet.add(message)
+        notifyItemInserted(dataSet.size)
     }
+
+
 }
 
 
