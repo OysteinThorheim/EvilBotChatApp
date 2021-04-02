@@ -44,7 +44,7 @@ class FavoritesFragment : Fragment() {
         favorites_recyclerview.layoutManager= LinearLayoutManager(context) //(this) ??
 
 
-        val item=object :SwipeToDelete(context, 0, ItemTouchHelper.LEFT){
+        val item=object :SwipeToDelete(context, 0, ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 favoritesAdapter!!.del(viewHolder.adapterPosition) //Er det lov å bruke !! egt? haha
             }
@@ -53,23 +53,7 @@ class FavoritesFragment : Fragment() {
         val itemTouchHelper=ItemTouchHelper(item)
         itemTouchHelper.attachToRecyclerView(favorites_recyclerview)
 
-        //TODO: save_insultButton
+        //TODO: save_insultButton eller swipe to save på chat side
     }
 
-    /*val itemTouchHelperCallback =
-        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, position: Int) {
-                val viewAdapter = favoritesAdapter
-                (viewAdapter as FavoritesAdapter).deleteFavorite(viewHolder)
-                Toast.makeText(requireContext(), "DELETED", Toast.LENGTH_LONG).show()
-            }
-
-        }*/
 }
