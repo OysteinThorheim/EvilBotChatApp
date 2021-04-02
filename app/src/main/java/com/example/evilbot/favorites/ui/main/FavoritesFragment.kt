@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,7 @@ class FavoritesFragment : Fragment() {
         val item=object :SwipeToDelete(context, 0, ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 favoritesAdapter!!.del(viewHolder.adapterPosition) //Er det lov å bruke !! egt? haha
+                Toast.makeText(requireContext(), "DELETED", Toast.LENGTH_LONG).show()
             }
         }
 
