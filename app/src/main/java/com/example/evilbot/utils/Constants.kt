@@ -1,4 +1,4 @@
-package com.example.evilbot
+package com.example.evilbot.utils
 
 object Constants {
 

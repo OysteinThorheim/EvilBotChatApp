@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.evilbot.Constants.RECEIVE_ID
-import com.example.evilbot.Constants.SEND_ID
+import com.example.evilbot.utils.Constants.RECEIVE_ID
+import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
 import kotlinx.android.synthetic.main.evilbot_chat_card.view.*
 
