@@ -28,7 +28,7 @@ class  ChatViewModel : ViewModel() {
                 val result: ChatObject? = Klaxon().parse<ChatObject>(response)
 
                 result?.let {
-                    //Log.d("LOG_MESSAGE", it.insult) //TODO måtte kommentere denne ut fordi den brukte insult fra ChatObject. må muligens lage ny klasse for insults.
+                    Log.d("LOG_MESSAGE", it.insult) //TODO måtte kommentere denne ut fordi den brukte insult fra ChatObject. må muligens lage ny klasse for insults.
                     insultInterface.onInsultReceived(it)
                 }
             },

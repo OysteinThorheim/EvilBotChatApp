@@ -18,6 +18,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
             itemView.setOnClickListener {
                 messagesList.removeAt(adapterPosition)
                 notifyItemRemoved(adapterPosition)
+
             }
         }
     }
