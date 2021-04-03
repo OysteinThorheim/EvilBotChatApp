@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.login_container, TwistFragment())
-        fragmentTransaction.addToBackStack(null)
+        //fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 

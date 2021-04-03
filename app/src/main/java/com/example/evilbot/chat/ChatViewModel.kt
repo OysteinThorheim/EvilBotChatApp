@@ -46,10 +46,10 @@ class  ChatViewModel : ViewModel() {
         "https://evilinsult.com/generate_insult.php?lang=en&type=json"
     )
 
-    fun getInsult(context: Context?, insultInterface: InsultInterface, currentInsultCounter: String){
+    fun getInsult(context: Context?, insultInterface: InsultInterface, /*currentInsultCounter: String*/){
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(context)
-        val url = insultList[currentInsultCounter.toInt()]
+        val url = insultList.toString()/*[currentInsultCounter.toInt()]*/
 
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
@@ -59,7 +59,7 @@ class  ChatViewModel : ViewModel() {
                 val result: ChatObject? = Klaxon().parse<ChatObject>(response)
 
                 result?.let {
-                    Log.d("LOG_MESSAGE", it.insult) //TODO måtte kommentere denne ut fordi den brukte insult fra ChatObject. må muligens lage ny klasse for insults.
+                    Log.d("LOG_MESSAGE", it.insult)
                     insultInterface.onInsultReceived(it)
                 }
             },

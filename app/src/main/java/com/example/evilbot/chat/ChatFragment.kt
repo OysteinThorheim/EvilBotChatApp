@@ -1,5 +1,6 @@
 package com.example.evilbot.chat
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.solver.state.State
@@ -19,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
+import com.example.evilbot.SHARED_PREFS_NAME
+import com.example.evilbot.SHARED_PREFS_TEXT
 import com.example.evilbot.utils.Constants
 import com.example.evilbot.utils.Constants.RECEIVE_ID
 import kotlinx.android.synthetic.main.evilbot_chat_card.*
@@ -52,6 +56,7 @@ class ChatFragment : Fragment() {
         ChatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
 
+
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
         return view
@@ -69,19 +74,21 @@ class ChatFragment : Fragment() {
         setButtonListeners()
         recyclerView()
 
-     /*   viewModel.getInsults(requireContext(),
-            { insults ->
 
-            },
-            {
-                Toast.makeText(
-                    context,
-                    "Could not get insult quote, please try again later.",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        )*/
+        /*   viewModel.getInsults(requireContext(),
+               { insults ->
+
+               },
+               {
+                   Toast.makeText(
+                       context,
+                       "Could not get insult quote, please try again later.",
+                       Toast.LENGTH_LONG
+                   ).show()
+               }
+           )*/
     }
+
 
     //LayoutManager defines how the recyclerView should look like.
     private fun recyclerView() {
@@ -128,6 +135,17 @@ class ChatFragment : Fragment() {
         sendMessageButton.setOnClickListener {
             val message = ChatInputField.text.toString()
 
+/*
+            val sharedPreferences =
+                requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+            val chatName = sharedPreferences.getString(SHARED_PREFS_NAME, null)
+            if (sharedPreferences.contains(SHARED_PREFS_TEXT)) {
+
+                user_name_tv.text = chatName
+            }*/
+
+
+
             if (message.isNotEmpty()) {
                 ChatInputField.setText("")
 
@@ -159,20 +177,21 @@ class ChatFragment : Fragment() {
 
 
     fun botResponds() {
-        val currentInsultCounter = "0"
+        //val currentInsultCounter = "0"
         val apiService = ChatViewModel()
         val message = ChatInputField.text.toString()
-        val insult = ChatObject(number = currentInsultCounter, "wdqawdwadadwadawd" , message, RECEIVE_ID)
+        val insult =
+            ChatObject(number = "1"/*currentInsultCounter*/, "wdqawdwadadwadawd", message, RECEIVE_ID)
         //if (message.isNotEmpty()) {
         //  ChatInputField.setText("")
 
-            adapter.insertMessage(insult)
-            recyclerView.scrollToPosition(adapter.itemCount - 1)
-            apiService.getInsult(context, object : InsultInterface{
-                override fun onInsultReceived(insult: ChatObject) {
-                    evil_bot_tv.text = insult.insult
-                }
-            }, currentInsultCounter)
+        adapter.insertMessage(insult)
+        recyclerView.scrollToPosition(adapter.itemCount - 1)
+        apiService.getInsult(context, object : InsultInterface {
+            override fun onInsultReceived(insult: ChatObject) {
+                evil_bot_tv.text = insult.insult
+            }
+        }/*, currentInsultCounter*/)
 
     }
 }

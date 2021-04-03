@@ -1,6 +1,7 @@
 package com.example.evilbot.login
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
 import android.view.Gravity
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.lottie.LottieAnimationView
 import com.example.evilbot.R
+import com.example.evilbot.SHARED_PREFS_NAME
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
@@ -40,30 +42,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val name = editText_name.text
+        setButtonListener()
 
-        fun toast(toast: String){
-           val toaster = Toast.makeText(context, Html.fromHtml("<font color='#ffffff' ><b>" + toast + "</b></font>"), Toast.LENGTH_SHORT)
-            toaster.setGravity(Gravity.CENTER or Gravity.CENTER, 120, -220)
 
-            val toastView: View? = toaster.getView()
-            if (toastView != null) {
-                toastView.setBackgroundResource(R.drawable.toast_color)
-            }
-            toaster.show()
-        }
-
-        submitButton.setOnClickListener {
-            if (name.toString() == name.isEmpty().toString() || name.isBlank()) {
-                toast("You must enter a name!")
-            } else if (name.isDigitsOnly()) {
-                toast("Name cannot only be a digit!")
-            } else if (name.length <= 2) {
-                toast("Name must be longer than that!")
-            } else {
-                (activity as LoginActivity).goToTwistFragment()
-            }
-        }
     }
 
     override fun onPause() {
@@ -83,6 +64,48 @@ class LoginFragment : Fragment() {
 
     private fun cancelAnimation() {
         loginPageAnimation.cancelAnimation()
+    }
+
+
+    fun setButtonListener(){
+
+
+        submitButton.setOnClickListener {
+
+            val name = editText_name.text
+
+            val sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+
+            editor.putString(SHARED_PREFS_NAME,name.toString())
+
+            editor.apply()
+
+            fun toast(toast: String){
+                val toaster = Toast.makeText(context, Html.fromHtml("<font color='#ffffff' ><b>" + toast + "</b></font>"), Toast.LENGTH_SHORT)
+                toaster.setGravity(Gravity.CENTER or Gravity.CENTER, 120, -220)
+
+                val toastView: View? = toaster.getView()
+                if (toastView != null) {
+                    toastView.setBackgroundResource(R.drawable.toast_color)
+                }
+                toaster.show()
+            }
+
+
+            if (name.toString() == name.isEmpty().toString() || name.isBlank()) {
+                toast("You must enter a name!")
+            } else if (name.isDigitsOnly()) {
+                toast("Name cannot only be a digit!")
+            } else if (name.length <= 2) {
+                toast("Name must be longer than that!")
+            } else {
+                (activity as LoginActivity).goToTwistFragment()
+            }
+        }
+
+
+
     }
 
 }

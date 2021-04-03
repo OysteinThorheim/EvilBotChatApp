@@ -1,10 +1,12 @@
 package com.example.evilbot.chat
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import com.example.evilbot.R
+import com.example.evilbot.SHARED_PREFS_NAME
 import com.example.evilbot.favorites.ui.main.FavoritesFragment
 import com.example.evilbot.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_a_p_i.*
@@ -44,6 +46,10 @@ class ChatActivity : AppCompatActivity() {
     }
 
     fun logUserOut() {
+
+        val sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
         startActivity(intent)
