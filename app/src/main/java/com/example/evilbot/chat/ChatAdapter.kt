@@ -41,7 +41,7 @@ class ChatAdapter(var dataSet: MutableList<ChatObject>) : RecyclerView.Adapter<C
 
             RECEIVE_ID -> {
                 holder.itemView.evil_bot_tv.apply {
-                    text = currentMessage.message
+                    text = currentMessage.insult
                     visibility = View.VISIBLE
                 }
                 holder.itemView.card_user.visibility = View.GONE

@@ -8,21 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.solver.state.State
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
-import com.example.evilbot.utils.BotResponse
+import com.example.evilbot.utils.Constants
 import com.example.evilbot.utils.Constants.RECEIVE_ID
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.evilbot_chat_card.*
-import kotlinx.coroutines.*
 
 class ChatFragment : Fragment() {
 
@@ -70,7 +69,7 @@ class ChatFragment : Fragment() {
         setButtonListeners()
         recyclerView()
 
-        viewModel.getInsults(requireContext(),
+     /*   viewModel.getInsults(requireContext(),
             { insults ->
 
             },
@@ -81,7 +80,7 @@ class ChatFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-        )
+        )*/
     }
 
     //LayoutManager defines how the recyclerView should look like.
@@ -136,12 +135,12 @@ class ChatFragment : Fragment() {
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
 
             }
-            botRespond(message) //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
+            botResponds() //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
         }
 
     }
 
-    private fun botRespond(message: String) {
+/*    private fun botRespond(message: String) {
 
         GlobalScope.launch {
             //fake response delay
@@ -156,29 +155,26 @@ class ChatFragment : Fragment() {
 
             }
         }
+    }*/
+
+
+    fun botResponds() {
+        val currentInsultCounter = "0"
+        val apiService = ChatViewModel()
+        val message = ChatInputField.text.toString()
+        val insult = ChatObject(number = currentInsultCounter, "wdqawdwadadwadawd" , message, RECEIVE_ID)
+        //if (message.isNotEmpty()) {
+        //  ChatInputField.setText("")
+
+            adapter.insertMessage(insult)
+            recyclerView.scrollToPosition(adapter.itemCount - 1)
+            apiService.getInsult(context, object : InsultInterface{
+                override fun onInsultReceived(insult: ChatObject) {
+                    evil_bot_tv.text = insult.insult
+                }
+            }, currentInsultCounter)
+
     }
-
-
-    /* fun botRespond() {
-         val currentInsultCounter = 0
-         val apiService = ChatViewModel()
-         val message = ChatInputField.text.toString()
-
-         //if (message.isNotEmpty()) {
-           //  ChatInputField.setText("")
-
-             context?.let {
-                 apiService.getInsult(it, object : InsultInterface {
-                     override fun onInsultReceived(insult: ChatObject) {
-                         evil_bot_tv.text = insult.insult
-                         adapter.insertMessage(ChatObject(1, "dw",message, RECEIVE_ID))
-                         recyclerView.scrollToPosition(adapter.itemCount - 1)
-                     }
-                 })
-             }
-         }
-     } */
-
 }
 
 
