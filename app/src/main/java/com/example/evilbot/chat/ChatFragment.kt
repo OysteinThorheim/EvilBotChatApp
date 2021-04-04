@@ -27,6 +27,7 @@ import com.example.evilbot.utils.BotResponse
 import com.example.evilbot.utils.Constants
 import com.example.evilbot.utils.Constants.RECEIVE_ID
 import kotlinx.android.synthetic.main.evilbot_chat_card.*
+import kotlinx.coroutines.delay
 
 class ChatFragment : Fragment() {
 
@@ -70,19 +71,6 @@ class ChatFragment : Fragment() {
         setButtonListeners()
         recyclerView()
 
-
-        /*   viewModel.getInsults(requireContext(), //TODO tilhører Gson i ChatViewmodel
-               { insults ->
-
-               },
-               {
-                   Toast.makeText(
-                       context,
-                       "Could not get insult quote, please try again later.",
-                       Toast.LENGTH_LONG
-                   ).show()
-               }
-           )*/
     }
 
 
@@ -101,22 +89,6 @@ class ChatFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
 
-        /*  chatAdapter = ChatAdapter(
-              listOf(
-                  ChatObject(1,"dldasdsao"),
-                  ChatObject(2,"skaomcsdjocknm"),
-                  ChatObject(3,"ijuvhfin"),
-                  ChatObject(4,"njfeivbhiufijosmcs"),
-                  ChatObject(5,"jidksnckslmpkxaslømxslmxalksmxlkam"),
-                  ChatObject(6,"123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"),
-                  ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemølmwelømlekwmceklwmdklwemlekwmceklwmdklwem"),
-                  ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwem"),
-                  ChatObject(6,"vmkfomoksmdpkmwl,mclw,emløwe,ølmwelømlekwmceklwmdklwemdewiodjeowjdoiwejdjewondjewnd"),
-              )
-          )
-          recyclerView.adapter = chatAdapter
-
-         */
     }
 
     private fun setButtonListeners() {
@@ -149,6 +121,7 @@ class ChatFragment : Fragment() {
                     val chatObject = ChatObject("1", botCustomResponse, "", RECEIVE_ID)
                     adapter.insertMessage(chatObject)
                     recyclerView.scrollToPosition(adapter.itemCount - 1)
+
                 }
             }
             //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
@@ -172,7 +145,6 @@ class ChatFragment : Fragment() {
             }
         }
     }*/
-
 
     fun botResponds() {
         val answer = object : InsultInterface {

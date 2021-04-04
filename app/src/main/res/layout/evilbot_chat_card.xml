@@ -5,15 +5,15 @@
     android:id="@+id/evilbot_chat_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="15dp"
-    android:layout_marginEnd="10dp">
+    android:layout_marginTop="4dp"
+    android:layout_marginHorizontal="10dp">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_evilbot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/light_blue"
+        app:cardBackgroundColor="#2DE38C"
         app:cardCornerRadius="12dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,28 +30,32 @@
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <ImageView
                 android:id="@+id/devil_chat_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:src="@drawable/ic_evilbot_chat_icon"
+                android:layout_width="42dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_launcher"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.037" />
 
             <TextView
                 android:id="@+id/evil_bot_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Evil Bot"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:text="Happy"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/evil_bot_tv"
                 app:layout_constraintStart_toStartOf="@id/evil_bot_tv"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Evil Bot"
+                app:layout_constraintVertical_bias="0.157"
+                tools:text="Happy"
                 tools:textColor="@color/black" />
 
             <ImageButton
@@ -68,6 +72,7 @@
                 android:id="@+id/evil_bot_tv"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/evil_bot_chat_bubble_background"
                 android:fontFamily="@font/roboto"
                 android:padding="5dp"
@@ -76,7 +81,7 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/devil_chat_picture"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Evil bot message......."
                 tools:textColor="@color/black" />
@@ -85,16 +90,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent">0
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_user"
@@ -117,7 +119,8 @@
                     android:id="@+id/user_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -132,10 +135,10 @@
                     android:id="@+id/user_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
                     android:background="#774df2"
                     android:fontFamily="@font/roboto"
-                    android:padding="5dp"
                     android:text="I have many questions????"
                     android:textAlignment="textEnd"
                     android:textColor="@color/white"
