@@ -34,7 +34,6 @@ android {
 }
 
 dependencies {
-    //implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.beust:klaxon:5.0.1'
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.6'
