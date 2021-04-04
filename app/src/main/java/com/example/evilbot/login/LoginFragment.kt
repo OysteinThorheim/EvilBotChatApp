@@ -1,7 +1,6 @@
 package com.example.evilbot.login
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Html
 import android.view.Gravity
@@ -50,7 +49,7 @@ class LoginFragment : Fragment() {
     override fun onPause() {
         super.onPause()
 
-        //lotti animation stop
+
         loginPageAnimation.cancelAnimation()
     }
 
@@ -62,23 +61,27 @@ class LoginFragment : Fragment() {
     }
 
 
-
-    fun setButtonListener(){
+    fun setButtonListener() {
 
 
         submitButton.setOnClickListener {
 
             val name = editText_name.text
 
-            val sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+            val sharedPreferences =
+                requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
 
-            editor.putString(SHARED_PREFS_NAME,name.toString())
+            editor.putString(SHARED_PREFS_NAME, name.toString())
 
             editor.apply()
 
-            fun toast(toast: String){
-                val toaster = Toast.makeText(context, Html.fromHtml("<font color='#ffffff' ><b>" + toast + "</b></font>"), Toast.LENGTH_SHORT)
+            fun toast(toast: String) {
+                val toaster = Toast.makeText(
+                    context,
+                    Html.fromHtml("<font color='#ffffff' ><b>" + toast + "</b></font>"),
+                    Toast.LENGTH_SHORT
+                )
                 toaster.setGravity(Gravity.CENTER or Gravity.CENTER, 120, -220)
 
                 val toastView: View? = toaster.getView()
@@ -99,10 +102,6 @@ class LoginFragment : Fragment() {
                 (activity as LoginActivity).goToTwistFragment()
             }
         }
-
-
-
     }
-
 }
 

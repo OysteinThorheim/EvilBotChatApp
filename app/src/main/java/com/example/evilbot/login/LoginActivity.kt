@@ -14,15 +14,12 @@ class LoginActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.login_container, LoginFragment()).commitNow()
 
-
     }
-
 
     fun goToTwistFragment() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.login_container, TwistFragment())
-        //fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 
@@ -31,5 +28,4 @@ class LoginActivity : AppCompatActivity() {
         intent.flags = intent.flags or Intent.FLAG_ACTIVITY_NO_HISTORY
         startActivity(intent)
     }
-
 }

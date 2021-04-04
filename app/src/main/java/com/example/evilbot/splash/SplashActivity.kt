@@ -12,8 +12,6 @@ import com.example.evilbot.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    //private val splashViewModel: SplashViewModel by viewModels()
-    private val userIsLoggedIn = false //TODO: lage kode for om bruker logget på eller ikke (sharedprefs)
     private val SPLASH_TIME_OUT = 3000L //Duration on splashActivity (3 sec)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +22,9 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
 
-        val sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+            val sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
 
-            val activityIntent = if (sharedPreferences.getString(SHARED_PREFS_NAME,null)!=null) {
+            val activityIntent = if (sharedPreferences.getString(SHARED_PREFS_NAME, null) != null) {
                 Intent(this, ChatActivity::class.java)
             } else {
                 Intent(this, LoginActivity::class.java)

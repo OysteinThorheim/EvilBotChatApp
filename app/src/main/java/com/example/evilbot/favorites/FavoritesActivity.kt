@@ -13,8 +13,8 @@ class FavoritesActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.favorites_container, FavoritesFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.favorites_container, FavoritesFragment.newInstance())
+                .commitNow()
         }
     }
 }

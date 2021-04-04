@@ -36,7 +36,7 @@ object BotResponse {
                 }
             }
 
-            message.contains("yo") -> {
+            message.contains("hi") -> {
                 when (random){
                     0 -> "what's up!"
                     1 -> "Yo DAWG!"
@@ -65,8 +65,8 @@ object BotResponse {
             else -> {
                 //when user ask anything else than the above.
                 when (random) {
-                    0 -> "I dont understand...."
-                    1 -> "I dont know......"
+                    0 -> "I don't understand...."
+                    1 -> "I can't comprehend"
                     2 -> "Try ask me something else."
                     else -> "error"
                 }

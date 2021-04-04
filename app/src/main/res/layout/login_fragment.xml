@@ -36,7 +36,7 @@
         android:id="@+id/editText_name"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="50dp"
         android:width="300dp"
         android:background="@drawable/edittext_background"
         android:fontFamily="@font/roboto"
@@ -47,37 +47,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_figure" />
 
-    <EditText
-        android:id="@+id/editText_age"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginTop="33dp"
-        android:width="300dp"
-        android:background="@drawable/edittext_background"
-        android:ems="10"
-        android:inputType="number"
-        android:fontFamily="@font/roboto"
-        android:hint="your age...."
-        android:textAlignment="center"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_name" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="60dp"
         android:width="300dp"
         android:height="55dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/roboto"
         android:text="Submit"
-        android:textSize="24sp"
         android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editText_age" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

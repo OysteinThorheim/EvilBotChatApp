@@ -1,6 +1,5 @@
 package com.example.evilbot.login
 
-import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import com.example.evilbot.R
-import com.example.evilbot.chat.ChatActivity
 
 class TwistFragment : Fragment() {
 
@@ -19,8 +16,9 @@ class TwistFragment : Fragment() {
     private lateinit var askMeButton: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view =  inflater.inflate(R.layout.twist_fragment, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.twist_fragment, container, false)
 
         askMeButton = view.findViewById(R.id.ask_me_button)
 
@@ -36,11 +34,11 @@ class TwistFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-    setButtonListeners()
+        setButtonListeners()
 
     }
 
-    fun setButtonListeners(){
+    fun setButtonListeners() {
         askMeButton.setOnClickListener {
             (activity as LoginActivity).goToChatFragment()
         }

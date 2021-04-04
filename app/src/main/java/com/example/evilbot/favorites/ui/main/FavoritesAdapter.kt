@@ -12,8 +12,8 @@ class FavoritesAdapter(private val dataSet: List<String>) :
 
     var favorite_list = mutableListOf<String>()
 
-    init{
-        this.favorite_list=dataSet as MutableList<String>
+    init {
+        this.favorite_list = dataSet as MutableList<String>
     }
 
     /**
@@ -30,7 +30,7 @@ class FavoritesAdapter(private val dataSet: List<String>) :
         }
     }
 
-    fun del(position: Int){
+    fun del(position: Int) {
         favorite_list.removeAt(position)
         notifyDataSetChanged()
     }

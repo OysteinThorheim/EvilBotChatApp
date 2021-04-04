@@ -1,8 +1,6 @@
 package com.example.evilbot.chat
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.media.Image
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,28 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.solver.state.State
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
-import com.example.evilbot.SHARED_PREFS_FAVORITE_INSULT
 import com.example.evilbot.SHARED_PREFS_NAME
-import com.example.evilbot.SHARED_PREFS_SAVED_INSULT
-import com.example.evilbot.favorites.ui.main.FavoritesAdapter
-
 import com.example.evilbot.utils.BotResponse
-import com.example.evilbot.utils.Constants
 import com.example.evilbot.utils.Constants.RECEIVE_ID
-import kotlinx.android.synthetic.main.evilbot_chat_card.*
-import kotlinx.coroutines.delay
+
 
 class ChatFragment : Fragment() {
 
@@ -46,7 +34,7 @@ class ChatFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChatAdapter
     private lateinit var saveInsultButton: ImageButton
-   // private lateinit var sharedPrefs: SharedPreferences
+    // private lateinit var sharedPrefs: SharedPreferences
 
 
     override fun onCreateView(
@@ -64,7 +52,7 @@ class ChatFragment : Fragment() {
         recyclerView = view.findViewById(R.id.chat_recyclerView)
         chatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
-      //  saveInsultButton = view.findViewById(R.id.save_insult_button)
+        //  saveInsultButton = view.findViewById(R.id.save_insult_button)
 
 
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
@@ -120,19 +108,19 @@ class ChatFragment : Fragment() {
             if (message.isNotEmpty()) {
                 chatInputField.setText("")
 
-                adapter.insertMessage(ChatObject("1", "dw", message, SEND_ID))
+                adapter.insertMessage(ChatObject("dw", message, SEND_ID))
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
                 if (message.contains("?")) {
                     botResponds()
                 } else {
                     val botCustomResponse = BotResponse.preSetResponses(message)
-                    val chatObject = ChatObject("1", botCustomResponse, "", RECEIVE_ID)
+                    val chatObject = ChatObject(botCustomResponse, "", RECEIVE_ID)
                     adapter.insertMessage(chatObject)
                     recyclerView.scrollToPosition(adapter.itemCount - 1)
 
                 }
             }
-            //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
+
         }
 /*
         saveInsultButton.setOnClickListener {
@@ -146,24 +134,7 @@ class ChatFragment : Fragment() {
 */
     }
 
-/*    private fun botRespond(message: String) {
-
-        GlobalScope.launch {
-            //fake response delay
-            delay(1000)
-
-            withContext(Dispatchers.Main) {
-
-                val response = BotResponse.preSetResponses(message)
-
-                adapter.insertMessage(ChatObject("1", "insult", response, RECEIVE_ID))
-                recyclerView.scrollToPosition(adapter.itemCount - 1)
-
-            }
-        }
-    }*/
-
-    fun botResponds() {
+    private fun botResponds() {
         val answer = object : InsultInterface {
 
             override fun onInsultReceived(insult: ChatObject) {
