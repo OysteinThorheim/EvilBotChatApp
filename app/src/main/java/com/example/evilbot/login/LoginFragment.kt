@@ -57,14 +57,10 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        //:TODO resume lotti animation (??)
-        //loginPageAnimation.isAnimating
+
+        loginPageAnimation.isAnimating
     }
 
-
-    private fun cancelAnimation() {
-        loginPageAnimation.cancelAnimation()
-    }
 
 
     fun setButtonListener(){

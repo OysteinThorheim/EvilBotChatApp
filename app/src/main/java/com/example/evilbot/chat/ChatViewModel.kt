@@ -14,7 +14,9 @@ import java.lang.reflect.Type
 
 
 class  ChatViewModel : ViewModel() {
- /*   fun getInsults(context: Context, successCallBack: InsultInterface, errorCallBack: Int) {
+
+
+ /*   fun getInsults(context: Context, successCallBack: (List<ChatObject>) -> Unit, errorCallBack: () -> Unit) {
         val gson = Gson()
         val queue = Volley.newRequestQueue(context)
         val url = "https://evilinsult.com/generate_insult.php?lang=en&type=json"

@@ -63,11 +63,6 @@ class ChatFragment : Fragment() {
         return view
     }
 
-    /* override fun onActivityCreated(savedInstanceState: Bundle?) {
-         super.onActivityCreated(savedInstanceState)
-         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
-         // TODO: Use the ViewModel
-     }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -76,7 +71,7 @@ class ChatFragment : Fragment() {
         recyclerView()
 
 
-        /*   viewModel.getInsults(requireContext(),
+        /*   viewModel.getInsults(requireContext(), //TODO tilhører Gson i ChatViewmodel
                { insults ->
 
                },
