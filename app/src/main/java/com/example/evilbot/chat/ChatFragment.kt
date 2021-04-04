@@ -1,6 +1,8 @@
 package com.example.evilbot.chat
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.media.Image
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,8 +23,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
+import com.example.evilbot.SHARED_PREFS_FAVORITE_INSULT
 import com.example.evilbot.SHARED_PREFS_NAME
-import com.example.evilbot.SHARED_PREFS_TEXT
+import com.example.evilbot.SHARED_PREFS_SAVED_INSULT
+import com.example.evilbot.favorites.ui.main.FavoritesAdapter
+
 import com.example.evilbot.utils.BotResponse
 import com.example.evilbot.utils.Constants
 import com.example.evilbot.utils.Constants.RECEIVE_ID
@@ -40,6 +45,8 @@ class ChatFragment : Fragment() {
     private lateinit var sendMessageButton: ImageButton //TODO: sende melding funksjon
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChatAdapter
+    private lateinit var saveInsultButton: ImageButton
+   // private lateinit var sharedPrefs: SharedPreferences
 
 
     override fun onCreateView(
@@ -57,6 +64,7 @@ class ChatFragment : Fragment() {
         recyclerView = view.findViewById(R.id.chat_recyclerView)
         chatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
+      //  saveInsultButton = view.findViewById(R.id.save_insult_button)
 
 
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
@@ -126,7 +134,16 @@ class ChatFragment : Fragment() {
             }
             //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
         }
+/*
+        saveInsultButton.setOnClickListener {
+            viewModel.getInsult()
+            val sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS_FAVORITE_INSULT,Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
 
+            editor.putStringSet(SHARED_PREFS_SAVED_INSULT,FavoritesAdapter().favorite_list)
+
+        }
+*/
     }
 
 /*    private fun botRespond(message: String) {
