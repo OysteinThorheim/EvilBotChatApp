@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.favorites_fragment.*
 
 class FavoritesFragment : Fragment() {
 
-    var favoritesAdapter: FavoritesAdapter? = null
+    lateinit var favoritesAdapter: FavoritesAdapter
     var favorite_insults = mutableListOf<String>("Jeg bryr meg ikke hva andre synes om deg, jeg synes du er kul.", "Det ser ut som du trenger litt søvn.")
 
 
@@ -47,7 +47,7 @@ class FavoritesFragment : Fragment() {
 
         val item=object :SwipeToDelete(context, 0, ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                favoritesAdapter!!.del(viewHolder.adapterPosition) //Er det lov å bruke !! egt? haha
+                favoritesAdapter.del(viewHolder.adapterPosition)
                 Toast.makeText(requireContext(), "DELETED", Toast.LENGTH_LONG).show()
             }
         }

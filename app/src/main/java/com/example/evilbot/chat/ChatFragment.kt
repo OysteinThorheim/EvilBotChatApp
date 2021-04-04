@@ -23,6 +23,7 @@ import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
 import com.example.evilbot.SHARED_PREFS_NAME
 import com.example.evilbot.SHARED_PREFS_TEXT
+import com.example.evilbot.utils.BotResponse
 import com.example.evilbot.utils.Constants
 import com.example.evilbot.utils.Constants.RECEIVE_ID
 import kotlinx.android.synthetic.main.evilbot_chat_card.*
@@ -34,7 +35,7 @@ class ChatFragment : Fragment() {
     private lateinit var favoritesButton: AppCompatButton
     private lateinit var signOutButton: AppCompatButton
     private lateinit var icBurger: ImageButton
-    private lateinit var ChatInputField: EditText
+    private lateinit var chatInputField: EditText
     private lateinit var sendMessageButton: ImageButton //TODO: sende melding funksjon
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChatAdapter
@@ -53,7 +54,7 @@ class ChatFragment : Fragment() {
         burgerWindow.isVisible = false
         signOutButton = view.findViewById(R.id.signOut_button)
         recyclerView = view.findViewById(R.id.chat_recyclerView)
-        ChatInputField = view.findViewById(R.id.chat_input_editText)
+        chatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
 
 
@@ -92,8 +93,14 @@ class ChatFragment : Fragment() {
 
     //LayoutManager defines how the recyclerView should look like.
     private fun recyclerView() {
+
+        val sharedPreferences =
+            requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        val chatName = sharedPreferences.getString(SHARED_PREFS_NAME, "Øivind")
+
         adapter = ChatAdapter(
-            mutableListOf()
+            mutableListOf(),
+            chatName ?: "Øyvind"
         )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -133,27 +140,23 @@ class ChatFragment : Fragment() {
         }
 
         sendMessageButton.setOnClickListener {
-            val message = ChatInputField.text.toString()
-
-/*
-            val sharedPreferences =
-                requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
-            val chatName = sharedPreferences.getString(SHARED_PREFS_NAME, null)
-            if (sharedPreferences.contains(SHARED_PREFS_TEXT)) {
-
-                user_name_tv.text = chatName
-            }*/
-
-
+            val message = chatInputField.text.toString()
 
             if (message.isNotEmpty()) {
-                ChatInputField.setText("")
+                chatInputField.setText("")
 
                 adapter.insertMessage(ChatObject("1", "dw", message, SEND_ID))
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
-
+                if (message.contains("?")) {
+                    botResponds()
+                } else {
+                    val botCustomResponse = BotResponse.preSetResponses(message)
+                    val chatObject = ChatObject("1", botCustomResponse, "", RECEIVE_ID)
+                    adapter.insertMessage(chatObject)
+                    recyclerView.scrollToPosition(adapter.itemCount - 1)
+                }
             }
-            botResponds() //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
+            //TODO: denne funksjonen må lages så boten vår svarer på bruker når bruker har sendt en melding (kan svare med egendefinerte meldinger vi lager og fra api)
         }
 
     }
@@ -177,21 +180,15 @@ class ChatFragment : Fragment() {
 
 
     fun botResponds() {
-        //val currentInsultCounter = "0"
-        val apiService = ChatViewModel()
-        val message = ChatInputField.text.toString()
-        val insult =
-            ChatObject(number = "1"/*currentInsultCounter*/, "wdqawdwadadwadawd", message, RECEIVE_ID)
-        //if (message.isNotEmpty()) {
-        //  ChatInputField.setText("")
+        val answer = object : InsultInterface {
 
-        adapter.insertMessage(insult)
-        recyclerView.scrollToPosition(adapter.itemCount - 1)
-        apiService.getInsult(context, object : InsultInterface {
             override fun onInsultReceived(insult: ChatObject) {
-                evil_bot_tv.text = insult.insult
+                adapter.insertMessage(insult)
+                recyclerView.scrollToPosition(adapter.itemCount - 1)
             }
-        }/*, currentInsultCounter*/)
+        }
+
+        viewModel.getInsult(context, answer)
 
     }
 }

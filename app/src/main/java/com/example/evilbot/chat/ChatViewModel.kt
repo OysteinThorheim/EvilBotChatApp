@@ -7,6 +7,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
+import com.example.evilbot.utils.Constants
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -49,21 +50,25 @@ class  ChatViewModel : ViewModel() {
     fun getInsult(context: Context?, insultInterface: InsultInterface, /*currentInsultCounter: String*/){
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(context)
-        val url = insultList.toString()/*[currentInsultCounter.toInt()]*/
+        val url = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
+        val gson = Gson()
 
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
-            Request.Method.GET, url,
+            Request.Method.GET,
+            url,
             { response ->
 
-                val result: ChatObject? = Klaxon().parse<ChatObject>(response)
+                val insult: ChatObject = gson.fromJson<ChatObject>(response, ChatObject::class.java )
+                insult.id = Constants.RECEIVE_ID
+                insult.insult = insult.insult.replace("&quot;", "'")
 
-                result?.let {
-                    Log.d("LOG_MESSAGE", it.insult)
-                    insultInterface.onInsultReceived(it)
-                }
+                    Log.d("LOG_MESSAGE", insult.insult)
+                    insultInterface.onInsultReceived(insult)
+
             },
-            { Log.d("LOG_MESSAGE", "That didn't work!")
+            { error ->
+                Log.d("LOG_MESSAGE", error.message.toString())
             })
         // Add the request to the RequestQueue.
         queue.add(stringRequest)

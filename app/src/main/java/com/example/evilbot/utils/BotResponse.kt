@@ -9,7 +9,7 @@ object BotResponse {
 
         return when {
             //Hello
-            message.contains("Hello") -> {
+            message.contains("hello") -> {
                 when (random) {
                     0 -> "Hello there"
                     1 -> "Yo"
@@ -18,7 +18,7 @@ object BotResponse {
                 }
             }
             //How are you
-            message.contains("How are you") -> {
+            message.contains("how are you") -> {
                 when (random) {
                     0 -> "All good, thanks for asking."
                     1 -> "Dont talk to me human !"

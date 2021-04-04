@@ -9,7 +9,7 @@ import com.example.evilbot.utils.Constants.SEND_ID
 import com.example.evilbot.R
 import kotlinx.android.synthetic.main.evilbot_chat_card.view.*
 
-class ChatAdapter(var dataSet: MutableList<ChatObject>) : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
+class ChatAdapter(var dataSet: MutableList<ChatObject>,var chatName: String) : RecyclerView.Adapter<ChatAdapter.MessageViewHolder>() {
 
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
@@ -32,6 +32,7 @@ class ChatAdapter(var dataSet: MutableList<ChatObject>) : RecyclerView.Adapter<C
         val currentMessage = dataSet[position]
         when (currentMessage.id) {
             SEND_ID -> {
+                holder.itemView.user_name_tv.text = chatName
                 holder.itemView.user_tv.apply {
                     text = currentMessage.message
                     visibility = View.VISIBLE
