@@ -34,6 +34,7 @@ class  ChatViewModel : ViewModel() {
                 val insult: ChatObject = gson.fromJson<ChatObject>(response, ChatObject::class.java )
                 insult.id = Constants.RECEIVE_ID
                 insult.insult = insult.insult.replace("&quot;", "'")
+                insult.insult = insult.insult.replace("--&gt;", "-")
 
                     Log.d("LOG_MESSAGE", insult.insult)
                     insultInterface.onInsultReceived(insult)
