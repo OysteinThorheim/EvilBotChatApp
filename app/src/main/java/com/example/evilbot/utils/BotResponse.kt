@@ -5,15 +5,14 @@ object BotResponse {
     fun preSetResponses(_message: String): String {
 
         val random = (0..2).random()
+        val noRandom = 0
         val message = _message.toLowerCase()
 
         return when {
 
             message.contains("whats your name") -> {
-                when (random) {
-                    0 -> "Evil Bot"
-                    1 -> "Evil Bot"
-                    2 -> "Evil Bot"
+                when (noRandom) {
+                    0 -> "Happy"
                     else -> "error"
                 }
             }
