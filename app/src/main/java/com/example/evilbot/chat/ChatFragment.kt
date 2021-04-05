@@ -120,18 +120,7 @@ class ChatFragment : Fragment() {
 
                 }
             }
-
         }
-/*
-        saveInsultButton.setOnClickListener {
-            viewModel.getInsult()
-            val sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS_FAVORITE_INSULT,Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-
-            editor.putStringSet(SHARED_PREFS_SAVED_INSULT,FavoritesAdapter().favorite_list)
-
-        }
-*/
     }
 
     private fun botResponds() {

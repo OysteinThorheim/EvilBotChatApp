@@ -1,5 +1,6 @@
 package com.example.evilbot.chat
 
+import android.content.SharedPreferences
 import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,7 @@ class ChatAdapter(var dataSet: MutableList<ChatObject>,var chatName: String) : R
                 holder.itemView.card_user.visibility = View.GONE
             }
         }
+        
     }
 
     override fun getItemCount(): Int {
@@ -59,16 +61,5 @@ class ChatAdapter(var dataSet: MutableList<ChatObject>,var chatName: String) : R
         this.dataSet.add(message)
         notifyItemInserted(dataSet.size)
     }
-    /*
-    fun saveInsult(SaveInsult: String){
-        val editor = sharedPrefs.edit()
-        val insult = sharedPrefs.getStringSet(getString(R.), setOf())?.toMutableList()
-
-        insult?.add(SaveInsult)
-        editor.putStringSet(getString(R.string.shared_prefs_favorite_insult), insult?.toSet())
-        editor.commit()
-
-
-    }*/
 
 }
