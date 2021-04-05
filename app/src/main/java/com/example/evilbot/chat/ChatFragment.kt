@@ -20,6 +20,7 @@ import com.example.evilbot.R
 import com.example.evilbot.SHARED_PREFS_NAME
 import com.example.evilbot.utils.BotResponse
 import com.example.evilbot.utils.Constants.RECEIVE_ID
+import kotlinx.coroutines.*
 
 
 class ChatFragment : Fragment() {
@@ -34,7 +35,6 @@ class ChatFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChatAdapter
     private lateinit var saveInsultButton: ImageButton
-    // private lateinit var sharedPrefs: SharedPreferences
 
 
     override fun onCreateView(
@@ -52,7 +52,7 @@ class ChatFragment : Fragment() {
         recyclerView = view.findViewById(R.id.chat_recyclerView)
         chatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
-        //  saveInsultButton = view.findViewById(R.id.save_insult_button)
+
 
 
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
@@ -103,6 +103,7 @@ class ChatFragment : Fragment() {
         }
 
         sendMessageButton.setOnClickListener {
+
             val message = chatInputField.text.toString()
 
             if (message.isNotEmpty()) {
@@ -111,29 +112,39 @@ class ChatFragment : Fragment() {
                 adapter.insertMessage(ChatObject("dw", message, SEND_ID))
                 recyclerView.scrollToPosition(adapter.itemCount - 1)
                 if (message.contains("?")) {
-                    botResponds()
+                    botRespondsFromApi()
                 } else {
-                    val botCustomResponse = BotResponse.preSetResponses(message)
-                    val chatObject = ChatObject(botCustomResponse, "", RECEIVE_ID)
-                    adapter.insertMessage(chatObject)
-                    recyclerView.scrollToPosition(adapter.itemCount - 1)
+                    GlobalScope.launch {
+                        delay(1000)
+                        withContext(Dispatchers.Main) {
+                            val botCustomResponse = BotResponse.preSetResponses(message)
+                            val chatObject = ChatObject(botCustomResponse, "", RECEIVE_ID)
+                            adapter.insertMessage(chatObject)
+                            recyclerView.scrollToPosition(adapter.itemCount - 1)
 
+                        }
+                    }
                 }
             }
         }
     }
 
-    private fun botResponds() {
-        val answer = object : InsultInterface {
+    private fun botRespondsFromApi() {
 
-            override fun onInsultReceived(insult: ChatObject) {
-                adapter.insertMessage(insult)
-                recyclerView.scrollToPosition(adapter.itemCount - 1)
+        GlobalScope.launch {
+            delay(1000)
+            withContext(Dispatchers.Main) {
+
+                val answer = object : InsultInterface {
+                    override fun onInsultReceived(insult: ChatObject) {
+                        adapter.insertMessage(insult)
+                        recyclerView.scrollToPosition(adapter.itemCount - 1)
+                    }
+                }
+                viewModel.getInsult(context, answer)
+
             }
         }
-
-        viewModel.getInsult(context, answer)
-
     }
 }
 

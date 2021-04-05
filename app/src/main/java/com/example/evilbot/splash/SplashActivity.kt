@@ -12,7 +12,7 @@ import com.example.evilbot.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT = 2000L //Duration on splashActivity (3 sec)
+    private val SPLASH_TIME_OUT = 2000L //Duration on splashActivity (2 sec)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
