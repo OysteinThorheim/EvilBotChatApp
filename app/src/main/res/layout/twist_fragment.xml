@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:backgroundTintMode="add"
-    tools:context=".login.TwistFragment">marhg0
-
+    tools:context=".login.TwistFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_bubbles"

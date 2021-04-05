@@ -97,7 +97,6 @@ class ChatFragment : Fragment() {
             (activity as ChatActivity).goToFavorites()
         }
 
-        //TODO: SharedPrefs implementation
         signOutButton.setOnClickListener {
             (activity as ChatActivity).logUserOut()
         }
