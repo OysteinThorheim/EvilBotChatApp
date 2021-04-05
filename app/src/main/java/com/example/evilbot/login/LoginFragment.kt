@@ -30,6 +30,8 @@ class LoginFragment : Fragment() {
 
         submitButton = view.findViewById(R.id.submit_button)
         loginPageAnimation = view.findViewById(R.id.login_figure)
+
+
         return view
     }
 
@@ -45,21 +47,6 @@ class LoginFragment : Fragment() {
 
 
     }
-
-    override fun onPause() {
-        super.onPause()
-
-
-        loginPageAnimation.cancelAnimation()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-
-        loginPageAnimation.isAnimating
-    }
-
 
     fun setButtonListener() {
 
