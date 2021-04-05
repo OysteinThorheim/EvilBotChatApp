@@ -17,8 +17,11 @@ class FavoritesFragment : Fragment() {
 
     lateinit var favoritesAdapter: FavoritesAdapter
     var favorite_insults = mutableListOf<String>(
+        "Her skulle man egentlig kunne lagre fornærmelsene man liker best. Dette fikk vi dessverre ikke til. Beklager det! Swipe to delete disse meldingene.",
+        "DENNE SIDEN ER UNDER KONSTRUKSJON",
+        "For eksmepel:",
         "Jeg bryr meg ikke hva andre synes om deg, jeg synes du er kul.",
-        "Det ser ut som du trenger litt søvn."
+        "Det ser ut som du trenger litt søvn.",
     )
 
 
