@@ -52,16 +52,17 @@
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:width="300dp"
+        android:layout_marginBottom="100dp"
+        android:width="310dp"
         android:height="55dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/roboto"
         android:text="Submit"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
