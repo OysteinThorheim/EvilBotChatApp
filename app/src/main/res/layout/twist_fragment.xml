@@ -93,8 +93,7 @@ and he will answer all your problems!"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:text="Remember to put “?” after a question
-or he will not answer
-he’s stupid."
+or he will not answer"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="normal"
@@ -118,6 +117,17 @@ he’s stupid."
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:text="he’s stupid."
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
