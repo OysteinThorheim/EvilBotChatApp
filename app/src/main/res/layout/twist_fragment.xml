@@ -107,18 +107,18 @@ he’s stupid."
         android:id="@+id/ask_me_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:width="310dp"
+        android:height="55dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/roboto"
         android:paddingHorizontal="15dp"
-        android:height="55dp"
         android:text="Ask me a question"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
