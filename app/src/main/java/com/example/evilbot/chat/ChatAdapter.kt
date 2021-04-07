@@ -48,7 +48,6 @@ class ChatAdapter(var dataSet: MutableList<ChatObject>,var chatName: String) : R
                 holder.itemView.card_user.visibility = View.GONE
             }
         }
-
     }
 
     override fun getItemCount(): Int {

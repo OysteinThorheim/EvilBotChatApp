@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -31,10 +33,9 @@ class ChatFragment : Fragment() {
     private lateinit var signOutButton: AppCompatButton
     private lateinit var icBurger: ImageButton
     private lateinit var chatInputField: EditText
-    private lateinit var sendMessageButton: ImageButton //TODO: sende melding funksjon
+    private lateinit var sendMessageButton: ImageButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChatAdapter
-    private lateinit var saveInsultButton: ImageButton
 
 
     override fun onCreateView(
@@ -42,6 +43,7 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.chat_fragment, container, false)
+        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
         favoritesButton = view.findViewById(R.id.favorites_button)
         signOutButton = view.findViewById(R.id.signOut_button)
@@ -55,7 +57,7 @@ class ChatFragment : Fragment() {
 
 
 
-        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+
 
         return view
     }
@@ -66,6 +68,7 @@ class ChatFragment : Fragment() {
 
         setButtonListeners()
         recyclerView()
+
 
     }
 
