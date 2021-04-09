@@ -9,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -34,8 +32,8 @@ class ChatFragment : Fragment() {
     private lateinit var icBurger: ImageButton
     private lateinit var chatInputField: EditText
     private lateinit var sendMessageButton: ImageButton
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ChatAdapter
+    private lateinit var chatRecyclerView: RecyclerView
+    private lateinit var chatAdapter: ChatAdapter
 
 
     override fun onCreateView(
@@ -51,7 +49,7 @@ class ChatFragment : Fragment() {
         burgerWindow = view.findViewById(R.id.burger_window)
         burgerWindow.isVisible = false
         signOutButton = view.findViewById(R.id.signOut_button)
-        recyclerView = view.findViewById(R.id.chat_recyclerView)
+        chatRecyclerView = view.findViewById(R.id.chat_recyclerView)
         chatInputField = view.findViewById(R.id.chat_input_editText)
         sendMessageButton = view.findViewById(R.id.send_message_button)
 
@@ -73,19 +71,18 @@ class ChatFragment : Fragment() {
     }
 
 
-    //LayoutManager defines how the recyclerView should look like.
     private fun recyclerView() {
 
         val sharedPreferences =
             requireActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
         val chatName = sharedPreferences.getString(SHARED_PREFS_NAME, "Øivind")
 
-        adapter = ChatAdapter(
+        chatAdapter = ChatAdapter(
             mutableListOf(),
             chatName ?: "Øyvind"
         )
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        chatRecyclerView.adapter = chatAdapter
+        chatRecyclerView.layoutManager = LinearLayoutManager(context)
 
 
     }
@@ -111,8 +108,8 @@ class ChatFragment : Fragment() {
             if (message.isNotEmpty()) {
                 chatInputField.setText("")
 
-                adapter.insertMessage(ChatObject("dw", message, SEND_ID))
-                recyclerView.scrollToPosition(adapter.itemCount - 1)
+                chatAdapter.insertMessage(ChatObject("dw", message, SEND_ID))
+                chatRecyclerView.scrollToPosition(chatAdapter.itemCount - 1)
                 if (message.contains("?")) {
                     botRespondsFromApi()
                 } else {
@@ -121,8 +118,8 @@ class ChatFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             val botCustomResponse = BotResponse.preSetResponses(message)
                             val chatObject = ChatObject(botCustomResponse, "", RECEIVE_ID)
-                            adapter.insertMessage(chatObject)
-                            recyclerView.scrollToPosition(adapter.itemCount - 1)
+                            chatAdapter.insertMessage(chatObject)
+                            chatRecyclerView.scrollToPosition(chatAdapter.itemCount - 1)
 
                         }
                     }
@@ -139,8 +136,8 @@ class ChatFragment : Fragment() {
 
                 val answer = object : InsultInterface {
                     override fun onInsultReceived(insult: ChatObject) {
-                        adapter.insertMessage(insult)
-                        recyclerView.scrollToPosition(adapter.itemCount - 1)
+                        chatAdapter.insertMessage(insult)
+                        chatRecyclerView.scrollToPosition(chatAdapter.itemCount - 1)
                     }
                 }
                 viewModel.getInsult(context, answer)
